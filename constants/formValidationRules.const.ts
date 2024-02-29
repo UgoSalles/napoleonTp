@@ -1,7 +1,7 @@
 /**
  * Liste des règles de validation du formulaire
  */
-export const FORM_VALIDATION_RULES = {
+export const FORM_VALIDATIONS_RULES = {
     required: (v: string) => !!v || 'Ce champ est requis !',
     notEmpty: (v: Array<unknown>) =>
       v.length > 0 || 'Ce champ ne doit pas être vide !',

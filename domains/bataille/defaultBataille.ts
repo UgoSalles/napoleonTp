@@ -2,13 +2,13 @@ import type {BatailleInterface} from "~/types/bataille"
 
 
 export const DefaultBataille ={
+    image: '',
     nom: '',
     annee: '',
     lieu: '',
     force: '',
     pertes: '',
     situation: '',
-    image: '',
     victoire: true,
         
 } satisfies Omit<BatailleInterface, 'id'>
