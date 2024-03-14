@@ -21,24 +21,9 @@
 
 
     //fonction permettant de changer l'icone
-
     const icon = computed(() =>
         icons.value === 'mdi-eye-arrow-left-outline' ? 'mdi-eye-arrow-left' : 'mdi-eye-arrow-left-outline',
     )
-
-
-
-    //fonction a charger au moment du montage
-    onMounted(() => {
-        //TODO
-        //pour chaque bataille, calculer la longueur de la description et la couper si elle est trop longue
-        
-    })
-    
-
-    //TODO
-    // Fonction pour couper la description d'une bataille si elle est trop longue
-
 
 
     // Référence pour stocker les descriptions étendues des batailles
@@ -81,12 +66,23 @@
         })
     }
 
+    //fonction pour la barre de recherche
+    let input = ref("");
+    function filtreBataille() {
+    return data.value.filter((bataille) =>
+        bataille.nom.toLowerCase().includes(input.value.toLowerCase()) || bataille.annee.toString().includes(input.value)
+    );
+    }
+
 </script>
 
 <template>
+    <!-- Barre de recherche en fonction du nom ou de l'annee -->
+    
     <!-- bouton creer -->
     <VBtn  class="create"><RouterLink :to="`/batailles/create`"> New battle </RouterLink> </VBtn>
-    <v-container class="container" v-for="bataille in data" :key="bataille.id" >
+    <input type="text" v-model="input" placeholder="Recherche bataille..."  class="input"/>
+    <v-container class="container" v-for="bataille in filtreBataille()" :key="bataille.id" >
 
         <VRow cols="12" sm="4" class="mainContainer" v-if="bataille.victoire"  >
             <VSheet class="entete" >
@@ -194,5 +190,10 @@
     background-color: lightgrey;
 }
 
+.input{
+    border: #000 solid 1px;
+    width: 20%;
+    margin-left: 3%;
+}
 
 </style>

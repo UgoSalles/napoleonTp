@@ -24,8 +24,6 @@
       return file;
   };
  
-  let imageConverti: string | null = null
-  imageConverti = imageUrl
 </script>
 
 <template>
